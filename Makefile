@@ -1,7 +1,7 @@
-report.html: report.Rmd code/02_render_report.R random_numbers
+report.html: report.Rmd code/02_render_report.R diabetes_output
 	Rscript code/02_render_report.R
 
-random_numbers:
+diabetes_output:
 	Rscript code/01_make_output.R
 
 .PHONY: clean
