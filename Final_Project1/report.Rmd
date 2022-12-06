@@ -1,26 +1,4 @@
-pacman::p_load(
-  rio,          # File import
-  here,         # File locator
-  tidyverse,    # data management + ggplot2 graphics, 
-  stringr,      # manipulate text strings 
-  purrr,        # loop over objects in a tidy way
-  gtsummary,    # summary statistics and tests 
-  broom,        # tidy up results from regressions
-  lmtest,       # likelihood-ratio tests
-  parameters,   # alternative to tidy up results from regressions
-  see,          # alternative to visualize forest plots
-  ggplot2,
-  tidyquant,
-  lubridate,
-  slider,
-  RColorBrewer
-  )
-
-#load packages
-library(tidyverse)
-library(slider)
-library(tidyquant)
-library(lubridate)
+### RUN ONE CODE CHUNK AT A TIME ############
 
 pacman::p_load(
   rio,           # import/export
@@ -33,16 +11,15 @@ pacman::p_load(
 )
 
 #Import dataset (you'll have to upload), clean names
-  library(readr)
+
 diabetes <- read_csv("~/Downloads/diabetes_012.csv")
 View(diabetes)
-  janitor::clean_names()
-
+ janitor::clean_names()
 
 diabetes <- diabetes %>% 
   mutate(Phys_Cat = case_when(
     # criteria                                   # new value if TRUE
-    PhysHlth < 5                        ~ "bad",
+    PhysHlth < 5     ~ "bad",
     PhysHlth >= 5 & PhysHlth < 15 ~ "good",
     PhysHlth >= 15                       ~ "very good",
     is.na(PhysHlth)                     ~ NA_character_,
@@ -66,11 +43,6 @@ diabetes <- diabetes %>%
     BMI >= 30                       ~ "high",
     is.na(BMI)                     ~ NA_character_,
     TRUE                                       ~ "Check me"))  
-
-
-###
-RUN ONE CODE CHUNK AT A TIME
-############
 
 
 # Diabetic status wrt bmi
