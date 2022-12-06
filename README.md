@@ -1,13 +1,3 @@
-## Initial code description
-
-  diabetes_012.csv:
-    BRFSS data are continuously collected by telephone survey by the CDC to       gather information about health behaviors and health conditions from over       400,000 people a year across the entire United States. The subset of this       data was selected on the basis of the included variables being predictors or     risk factors for diabetes. This data is a subset of the Behavioral Risk         Factor Surveillance System (BRFSS) data from
-2015 that is focused on diabetes risk factors.
-
-
-  
-# Create a Report on Diabetes by BMI x PhysHlth x Sex
-For our research analysis, we plan to use ggplot to graph our explanation of the changes in BMI compared to the number of days of physical activity in relation to sex.
 
 # Contents
 ## Code

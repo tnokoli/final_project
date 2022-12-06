@@ -1,54 +1,44 @@
-### RUN ONE CODE CHUNK AT A TIME ############
 
-pacman::p_load(
-  rio,           # import/export
-  here,          # filepaths
-  lubridate,     # working with dates
-  forcats,       # factors
-  aweek,         # create epiweeks with automatic factor levels
-  janitor,       # tables
-  tidyverse      # data mgmt and viz
+---
+title: Diabetes Data
+author: Tiffany Okoli
+output: html_document
+---
+
+```{r, here-i-am, include = FALSE}
+here::i_am(
+  "report.Rmd"
 )
+```
 
-#Import dataset (you'll have to upload), clean names
-  library(readr)
-diabetes <- read_csv("~/Downloads/diabetes_012.csv")
-View(diabetes)
-  janitor::clean_names()
-
-
-diabetes <- diabetes %>% 
-  mutate(Phys_Cat = case_when(
-    # criteria                                   # new value if TRUE
-    PhysHlth < 5                        ~ "bad",
-    PhysHlth >= 5 & PhysHlth < 15 ~ "good",
-    PhysHlth >= 15                       ~ "very good",
-    is.na(PhysHlth)                     ~ NA_character_,
-    TRUE                                       ~ "Check me"))  
+```{r, download-packages, include = FALSE}
+library(ggplot2)
+```
 
 
-###rename
+## Initial code description
 
-diabetes <- diabetes %>% 
-  mutate(Diabetes_012 = recode(Diabetes_012,
-                           # for reference: OLD = NEW
-                           "0"  = "Not Diabetic",
-                           "2"  = "Diabetic",
-                      ))
+  diabetes_012.csv:
+    BRFSS data are continuously collected by telephone survey by the CDC to       gather information about health behaviors and health conditions from over       400,000 people a year across the entire United States. The subset of this       data was selected on the basis of the included variables being predictors or     risk factors for diabetes. This data is a subset of the Behavioral Risk         Factor Surveillance System (BRFSS) data from
+2015 that is focused on diabetes risk factors.
 
-diabetes <- diabetes %>% 
-  mutate(bmi_cat = case_when(
-    # criteria                                   # new value if TRUE
-    BMI < 20                        ~ "low",
-    BMI >= 20 & BMI < 30 ~ "medium",
-    BMI >= 30                       ~ "high",
-    is.na(BMI)                     ~ NA_character_,
-    TRUE                                       ~ "Check me"))  
 
-# Diabetic status wrt bmi
-ggplot(diabetes %>% drop_na(Diabetes_012)) + 
-  geom_bar(aes(y = BMI, fill = Diabetes_012), width = 0.7) +
-  theme_minimal()+
-  theme(legend.position = "bottom") +
-  labs(title = "Diabetic status in relation to bmi",
-       y = "BMI")
+  
+# Create a Report on Diabetes by BMI x PhysHlth x Sex
+For our research analysis, we plan to use ggplot to graph our explanation of the changes in BMI compared to the number of days of physical activity in relation to sex.
+
+
+
+### Graph 1
+``` {r}
+figure <- readRDS(file = "figure.rds") 
+figure
+```
+This is a stacked bar graph that shows the summarized relationship between diabetic status in relation to BMI and Physical Health level. 
+
+### Table 1
+
+```{r}
+topicSummary <- readRDS(file = "topicSummary.rds")
+knitr::kable(topicSummary)
+```
