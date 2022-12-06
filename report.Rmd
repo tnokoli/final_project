@@ -45,12 +45,6 @@ diabetes <- diabetes %>%
     is.na(BMI)                     ~ NA_character_,
     TRUE                                       ~ "Check me"))  
 
-
-###
-RUN ONE CODE CHUNK AT A TIME
-############
-
-
 # Diabetic status wrt bmi
 ggplot(diabetes %>% drop_na(Diabetes_012)) + 
   geom_bar(aes(y = BMI, fill = Diabetes_012), width = 0.7) +
