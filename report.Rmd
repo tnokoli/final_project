@@ -1,26 +1,4 @@
-pacman::p_load(
-  rio,          # File import
-  here,         # File locator
-  tidyverse,    # data management + ggplot2 graphics, 
-  stringr,      # manipulate text strings 
-  purrr,        # loop over objects in a tidy way
-  gtsummary,    # summary statistics and tests 
-  broom,        # tidy up results from regressions
-  lmtest,       # likelihood-ratio tests
-  parameters,   # alternative to tidy up results from regressions
-  see,          # alternative to visualize forest plots
-  ggplot2,
-  tidyquant,
-  lubridate,
-  slider,
-  RColorBrewer
-  )
-
-#load packages
-library(tidyverse)
-library(slider)
-library(tidyquant)
-library(lubridate)
+### RUN ONE CODE CHUNK AT A TIME ############
 
 pacman::p_load(
   rio,           # import/export
@@ -66,12 +44,6 @@ diabetes <- diabetes %>%
     BMI >= 30                       ~ "high",
     is.na(BMI)                     ~ NA_character_,
     TRUE                                       ~ "Check me"))  
-
-
-###
-RUN ONE CODE CHUNK AT A TIME
-############
-
 
 # Diabetic status wrt bmi
 ggplot(diabetes %>% drop_na(Diabetes_012)) + 
