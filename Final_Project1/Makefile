@@ -19,5 +19,5 @@ tnokoli/final_image: Dockerfile $(PROJECTFILES) $(RENVFILES)
 
 #run container
 final_report/report.html:
-	docker run -v "/$(pwd)/final_report":/Final_Project1/final_report tnokoli/project_image
+	docker run -v "/$(pwd)/final_report":/Final_Project/final_report tnokoli/project_image .
 
